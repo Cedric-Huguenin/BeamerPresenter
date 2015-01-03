@@ -24,9 +24,7 @@ public class PDFViewer {
 	}
 
 	private void viewPDFUtils(String path, int page) {
-		ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", "sumatrapdf " + path + " -reuse-instance -page " + page);
-		builder.redirectErrorStream(true);
-
+		ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", "sumatrapdf \"" + path + "\" -reuse-instance -page " + page);
 		try {
 			Process p = builder.start();
 		} catch (IOException e) {
