@@ -7,9 +7,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="495.0" prefWidth="624.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxbeamerpresenter.Controller">
+<AnchorPane id="AnchorPane" prefHeight="495.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxbeamerpresenter.Controller">
    <children>
-      <HBox id="hbox" prefHeight="495.0" prefWidth="624.0">
+      <HBox id="hbox" prefHeight="495.0" prefWidth="690.0">
          <children>
             <VBox prefHeight="496.0" prefWidth="480.0">
                <children>
@@ -57,7 +57,10 @@
                         <Insets top="30.0" />
                      </VBox.margin>
                   </GridPane>
-                  <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                  <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Pane fx:id="diffPane" prefHeight="200.0" prefWidth="200.0" />
+                     </children></HBox>
                   <Button fx:id="selectButton" mnemonicParsing="false" onAction="#handleSelectButton" text="Select">
                      <VBox.margin>
                         <Insets bottom="2.0" />
