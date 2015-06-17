@@ -21,14 +21,10 @@ import javafx.stage.Stage;
 public class FxBeamerPresenter extends Application {
 
     private Clock clock;
-	private Clock diffClock;
     private PDFModel pdfModel;
 
     @FXML
     private Pane pane;
-	
-	@FXML
-    private Pane diffPane;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -42,25 +38,15 @@ public class FxBeamerPresenter extends Application {
         stage.show();
         // add background image
         ImageView background = new ImageView(new Image(getClass().getResourceAsStream("DigitalClock-background.png")));
-		ImageView diffBackground = new ImageView(new Image(getClass().getResourceAsStream("DigitalClockDiff-background.png")));
         // add digital clock
         clock = new Clock(Color.ORANGERED, Color.rgb(50, 50, 50));
         clock.setLayoutX(45);
         clock.setLayoutY(186);
         clock.getTransforms().add(new Scale(0.83f, 0.83f, 0, 0));
-        controller.setClock(clock);
-		
-		diffClock = new Clock(Color.ORANGERED, Color.rgb(50, 50, 50));
-        diffClock.setLayoutX(45);
-        diffClock.setLayoutY(186);
-        diffClock.getTransforms().add(new Scale(0.38f, 0.38f, -52, -235));
-		controller.setDiffClock(diffClock);
-		
+        controller.setClock(clock); 
         // add background and clock to sample
         pane = (Pane) scene.lookup("#pane");
         pane.getChildren().addAll(background, clock);
-		diffPane = (Pane) scene.lookup("#diffPane");
-		diffPane.getChildren().addAll(diffBackground, diffClock);
         //root.getChildren().addAll(background, clock);
 
         pdfModel = new PDFModel();
