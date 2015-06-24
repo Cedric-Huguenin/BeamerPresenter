@@ -33,13 +33,12 @@
 package fxbeamerpresenter.model;
 
 import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.effect.Glow;
 import javafx.scene.effect.InnerShadow;
@@ -56,6 +55,7 @@ public class Clock extends Parent {
     private Calendar calendar = Calendar.getInstance();
     private Digit[] digits;
     private Timeline delayTimeline, secondTimeline;
+	private Group dots;
 
     public Clock(Color onColor, Color offColor) {
         pause = true;
@@ -68,7 +68,7 @@ public class Clock extends Parent {
         // create effect for off LEDs
         InnerShadow offEffect = new InnerShadow();
         // create digits
-        digits = new Digit[7];
+        digits = new Digit[6];
         for (int i = 0; i < 6; i++) {
             Digit digit = new Digit(onColor, offColor, onEffect, offEffect);
             digit.setLayoutX(i * 80 + ((i + 1) % 2) * 20);
@@ -76,7 +76,7 @@ public class Clock extends Parent {
             getChildren().add(digit);
         }
         // create dots
-        Group dots = new Group(
+        dots = new Group(
                 new Circle(80 + 54 + 20, 44, 6, onColor),
                 new Circle(80 + 54 + 17, 64, 6, onColor),
                 new Circle((80 * 3) + 54 + 20, 44, 6, onColor),
@@ -161,5 +161,14 @@ public class Clock extends Parent {
     public boolean isPause() {
         return pause;
     }
-
+	
+	public void setOnColor(Color onColor) {
+		for(Digit digit : digits) {
+			digit.setOnColor(onColor);
+		}
+		
+		dots.getChildren().stream().filter((n) -> (n instanceof Circle)).map((n) -> (Circle) n).forEach((c) -> {
+			c.setFill(onColor);
+		});
+	}
 }

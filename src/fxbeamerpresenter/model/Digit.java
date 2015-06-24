@@ -61,7 +61,7 @@ public final class Digit extends Parent {
         new Polygon(44, 12, 54, 2, 54, 52, 44, 47),
         new Polygon(0, 56, 10, 61, 10, 96, 0, 106),
         new Polygon(44, 61, 54, 56, 54, 106, 44, 96)};
-    private final Color onColor;
+    private Color onColor;
     private final Color offColor;
     private final Effect onEffect;
     private final Effect offEffect;
@@ -85,4 +85,8 @@ public final class Digit extends Parent {
             polygons[i].setEffect(DIGIT_COMBINATIONS[num][i] ? onEffect : offEffect);
         }
     }
+
+	public void setOnColor(Color onColor) {
+		this.onColor = onColor;
+	}
 }

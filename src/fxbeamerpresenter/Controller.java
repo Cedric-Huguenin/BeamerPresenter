@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 
 /**
@@ -23,6 +24,7 @@ import javafx.stage.FileChooser;
 public class Controller implements Initializable {
 
     private Clock clock;
+	private Clock diffClock;
     private PDFModel pdfModel;
     private PDFViewer pdfViewer;
     private FileChooser fileChooser;
@@ -46,6 +48,8 @@ public class Controller implements Initializable {
     private void handleStartPauseButton(ActionEvent event) {
         clock.togglePause();
         startPauseButton.setText(clock.isPause() ? "Play" : "Pause");
+		diffClock.setOnColor(Color.RED);
+		diffClock.togglePause();
     }
 
     @FXML
@@ -106,6 +110,10 @@ public class Controller implements Initializable {
     public void setClock(Clock model) {
         this.clock = model;
     }
+
+	public void setDiffClock(Clock diffClock) {
+		this.diffClock = diffClock;
+	}
 
     /**
      * @param pdfModel the pdfModel to set
